@@ -10,7 +10,7 @@ This project proposes an incremental rule discovery algorithm. The goal is to ef
 Entity Enhancing Rules: Supports data quality improvements through specialized rules.
 
 ### Datasets
-You can get datasets from [this page]()
+You can get datasets from [this page](https://drive.google.com/drive/folders/1-3xQp0xTlJBgX0noblIKO5mDY8W7Y3vZ?usp=drive_link)
 
 ### Quick Start Guide
 #### Prerequisites
@@ -22,7 +22,7 @@ Ensure the following software versions are installed:
 - Apache Spark 3.5.1
 
 #### Steps
-1. **Download Datasets**: Obtain the CSV datasets from the specified URL.
+1. **Download Datasets**: Obtain the CSV datasets from the specified [URL](https://drive.google.com/drive/folders/1-3xQp0xTlJBgX0noblIKO5mDY8W7Y3vZ?usp=drive_link).
 
 2. **Organize Files**: Place datasets in a directory, e.g., <PROJECT_ROOT>/datasets, and parameter input files in <PROJECT_ROOT>/in.
 3. **Compile the project** with following command
