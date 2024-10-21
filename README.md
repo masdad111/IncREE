@@ -3,17 +3,38 @@
 ### Overview
 This project proposes an incremental rule discovery algorithm. The goal is to efficiently mine rules from a dataset, ensuring their support and confidence meet specified thresholds. This algorithm allows for dynamic adjustments to these thresholds without restarting the entire process, saving time and computational resources.
 
-### Key Features
-- Incremental Rule Discovery: Adapts to changes in support (σ) and confidence (δ) thresholds, adding or removing rules as necessary.
-- Minimized Recomputations: Adjusts to parameter updates without restarting the discovery process.
-- Scalable Algorithms: Utilizes parallel processing to improve runtime efficiency.
-Entity Enhancing Rules: Supports data quality improvements through specialized rules.
 
-### Datasets
+## Datasets
 You can get datasets from [this page](https://drive.google.com/drive/folders/1-3xQp0xTlJBgX0noblIKO5mDY8W7Y3vZ?usp=drive_link)
 
-### Quick Start Guide
-#### Prerequisites
+## Packaged App Jar 
+You can find the packaged app jar in the **release page**.
+
+## Quick Start From Docker
+### Download Release
+Download the jar file into `target/scala-2.12/` directory.
+```
+wget https://github.com/masdad111/IncREE/releases/download/sigmod/HUME-assembly-0.2.0-CDF.jar -O target/scala-2.12/HUME-assembly-0.2.0-CDF.jar
+```
+### Build Docker Image 
+```shell 
+docker build -f .devcontainer/Dockerfile -t incree .
+```
+### Run the Spark App in container
+
+```shell
+docker run --rm \
+  -v `pwd`/datasets:/app/datasets \
+  -v `pwd`/in:/app/in \
+  -e DATASET_PATH=/app/datasets/hospital.csv \
+  -e PARAMS_PATH=/app/in/in-exp.csv \
+  -e OUTPUT_DIR=/app/out \
+  -e NUM_EXECUTORS=10 \
+  incree
+```
+
+## Manually Install
+### Prerequisites
 Ensure the following software versions are installed:
  
 - Ubuntu 22.04 (tested)
@@ -21,7 +42,7 @@ Ensure the following software versions are installed:
 - SBT 1.9.2
 - Apache Spark 3.5.1
 
-#### Steps
+### Steps
 1. **Download Datasets**: Obtain the CSV datasets from the specified [URL](https://drive.google.com/drive/folders/1-3xQp0xTlJBgX0noblIKO5mDY8W7Y3vZ?usp=drive_link).
 
 2. **Organize Files**: Place datasets in a directory, e.g., <PROJECT_ROOT>/datasets, and parameter input files in <PROJECT_ROOT>/in.
@@ -34,7 +55,6 @@ Make sure there is a file named plugins.sbt located in the <PROJECT_ROOT>/projec
 addSbtPlugin( "com.eed3si9n" %% "sbt-assembly" % "2.2.0")
 addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.1")
 ```
-
 
 3. Run the Algorithm: Use the following shell command to execute the algorithm:
 
